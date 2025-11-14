@@ -1,0 +1,831 @@
+<style>
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #94a3b8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e293b, #3b82f6);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.5em;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 50px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1em;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            color: var(--text-dark);
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            
+            gap: 60px;
+            align-items: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            font-size: 0.9em;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+  
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 30px;
+        }
+
+        .project-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .project-info p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            color: var(--primary);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2.5em;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .skill-list {
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+            
+                text-align: center;
+                gap: 20px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                margin: 0 20px;
+            }
+
+            .contact-form {
+                margin: 0 20px;
+                padding: 30px;
+            }
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, #3b82f655, #6366f155);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blob 20s infinite linear;
+            z-index: 1;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #2563eb33, #1d4ed833);
+            border-radius: 61% 39% 29% 71% / 55% 43% 57% 45%;
+            animation: blob 25s infinite linear;
+            z-index: 1;
+        }
+
+        @keyframes blob {
+            0% { transform: translate(0,0) rotate(0deg); }
+            25% { transform: translate(100px,50px) rotate(90deg); }
+            50% { transform: translate(0,100px) rotate(180deg); }
+            75% { transform: translate(-100px,50px) rotate(270deg); }
+            100% { transform: translate(0,0) rotate(360deg); }
+        }
+
+        /* Improved navigation scroll effect */
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Enhanced project card overlay */
+        .project-img {
+            position: relative;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-links {
+            color: white;
+            text-align: center;
+        }
+
+        .project-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .project-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Form improvements */
+        .contact-form {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: #2563eb10;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        /* Scrollbar customization */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Add hover effect for skills cards */
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Add responsive image in about section */
+        .about-content img {
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            max-width: 100%;
+            height: auto;
+        }
+        .skill-list {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(120px, 1fr));
+    gap: 6px 15px;
+    font-size: 16px;
+}
+.skill-list li::before {
+    content: "• ";
+    color: #4e8cff;
+}
+
+
+.project-card {
+    width: 100%;
+}
+
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<body>
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up text-white"></i>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQHkD2ghf4yKiQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712887140772?e=1764806400&v=beta&t=x0eszpFElIpQ76DJLCySo-3SBywBr6D4rpgr9Ol7g0M" alt="Profile Picture" class="profile-img">
+            <h2>MR. KEWAL SHANKAR JANGILWAR</h2>
+            <p>PHP DEVELOPER</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="section-header">
+            <h2>About Me</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+    <p>🚀 I am a passionate and performance-driven PHP Web Developer with a strong foundation in full-stack development. I specialize in building secure, responsive, and dynamic web applications using PHP, MySQL, JavaScript, and modern frameworks.</p>
+
+    <p>With hands-on experience in custom CRM systems, e-commerce platforms, and web-based automation solutions, I focus on delivering scalable and efficient applications that solve real business challenges.</p>
+
+    <p>🎯 <strong>Key Strengths:</strong></p>
+
+    <ul>
+        <li>Crafting clean, maintainable, and high-performance code</li>
+        <li>Strong understanding of MVC architecture and backend logic</li>
+        <li>Seamless integration of APIs and payment gateways (Razorpay, Stripe, etc.)</li>
+        <li>Ability to collaborate effectively in agile teams and meet tight deadlines</li>
+    </ul>
+<br>
+    <p>🧠 I stay updated with the latest development trends and technologies, constantly learning and improving. Whether it’s debugging complex issues or optimizing SQL queries, I approach every task with dedication and precision.</p>
+
+    <p>📩 I’m open to exciting new opportunities—full-time, freelance, or collaborative projects. Let’s connect and build something impactful together!</p>
+</div>
+
+          </div>
+    </section>
+
+  
+
+<section id="skills">
+    <div class="section-header">
+        <h2>Skills</h2>
+    </div>
+
+    <div class="skills-container">
+
+        <div class="skill-card">
+            <div class="skill-icon">
+                <i class="fas fa-server"></i>
+            </div>
+
+            <ul class="skill-list">
+                <li><i class="devicon-java-plain colored"></i> Java</li>
+                <li><i class="devicon-cplusplus-plain colored"></i> C++</li>
+                <li><i class="devicon-html5-plain colored"></i> HTML</li>
+                <li><i class="devicon-css3-plain colored"></i> CSS</li>
+                <li><i class="devicon-php-plain colored"></i> PHP</li>
+                <li><i class="devicon-javascript-plain colored"></i> JavaScript</li>
+                <li><i class="devicon-jquery-plain colored"></i> jQuery</li>
+                <li><i class="devicon-bootstrap-plain colored"></i> Bootstrap</li>
+                <li><i class="devicon-codeigniter-plain colored"></i> CodeIgniter</li>
+                <li><i class="devicon-mysql-plain colored"></i> MySQL</li>
+                <li><i class="devicon-amazonwebservices-plain colored"></i> AWS</li>
+                <li><i class="devicon-git-plain colored"></i> Git</li>
+                <li><i class="devicon-google-plain colored"></i> Google Analytics</li>
+                <li><i class="devicon-google-plain colored"></i> Google Search Console</li>
+                <li><i class="devicon-postgresql-plain colored"></i> PgAdmin</li>
+                <li><i class="devicon-laravel-plain colored"></i> Laravel</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+    <section id="contact">
+        <div class="section-header">
+     
+        
+    <h2>Contact Me</h2></div>
+    <form class="contact-form">
+        <div class="form-group">
+            <input type="text" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <input type="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+<section id="projects">
+    <div class="section-header">
+        <h2>Portfolio</h2>
+    </div>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="ss/p1.png" alt="Project 1">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://dezzerto.co.in/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                       <center> <h3>Dezzerto</h3></center>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="ss/p2.png" alt="Project 2">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://jantacredit.in/about.php" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <center>  <h3>Janata Credit Co. Bank</h3></center>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="ss/p3.png" alt="Project 3">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://mahuliagrotourism.in/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <center>  <h3>Mahuli Agrotourism Resort</h3></center>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="ss/p4.png" alt="Project 4">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://ccscomsoft.com/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <center>  <h3>CCS Comsoft</h3></center>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="ss/p5.png" alt="Project 4">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-links">
+                            <a href="https://joobjugad.com/" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <center>  <h3>JobJugad Job Portal</h3></center>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pagination + Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 John Doe. All rights reserved By Himanshu Santani.</p>
+</footer>
+</body>
+<script>
+    // Add scroll animations and back to top button
+    document.addEventListener('DOMContentLoaded', function() {
+        // Scroll reveal animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    });
+</script>
+<script>
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+    }
+});
+</script>
+
+    
